@@ -5,7 +5,7 @@ class Api::V1::AuthController < ApplicationController
         user = User.find_by(username: params[:username])
 
         if user&.authenticate(params[:password])
-            render json: {user: user}, status: ok
+            render json: {user: user}, status: :ok
         else
             render json: {error: 'Invalid email or password'}, status: :unauthorized
         end
