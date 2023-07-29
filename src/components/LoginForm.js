@@ -43,6 +43,7 @@ const LoginForm = () => {
         console.error("Error during login:", error);
       });
   };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="w-1/3 bg-white bg-opacity-75 rounded-lg p-8 shadow-md">
