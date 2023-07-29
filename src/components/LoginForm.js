@@ -1,12 +1,53 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
+  const backendBaseUrl = "http://localhost:3001";
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    fetch(`${backendBaseUrl}/api/v1/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not okay");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Login successful:", data);
+
+        navigate("/mainpage");
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+      });
+  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="w-1/3 bg-white bg-opacity-75 rounded-lg p-8 shadow-md">
         <h2 className="text-3xl font-semibold mb-4">Login</h2>
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="username" className="block font-semibold">
               Username
@@ -14,6 +55,8 @@ const LoginForm = () => {
             <input
               type="text"
               id="username"
+              value={formData.username}
+              onChange={handleChange}
               name="username"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Enter your username"
@@ -27,6 +70,8 @@ const LoginForm = () => {
             <input
               type="password"
               id="password"
+              value={formData.password}
+              onChange={handleChange}
               name="password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Enter your password"

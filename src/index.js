@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
+import MainPage from "./components/MainPage"
 import App from "./App";
 import './index.css';
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUpForm />,
   },
+  {
+    path : "/mainpage",
+    element: <MainPage />
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
