@@ -10,7 +10,7 @@ module Backend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.hosts << "localhost:3000"
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://localhost:3000' 
