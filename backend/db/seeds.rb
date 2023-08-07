@@ -13,6 +13,7 @@ user2 = User.create!(username: 'Jane', password: 'password')
 
 recipe1 = Recipe.create!(
   name: 'Pasta Carbonara',
+  image: "https://thestayathomechef.com/wp-content/uploads/2020/03/Pasta-Carbonara-2-3-scaled.jpg",
   ingredients: 'Spaghetti, eggs, pancetta, parmesan cheese',
   instructions: 'Cook spaghetti, fry pancetta, mix eggs and cheese, combine all',
   cuisine: italian,
@@ -21,6 +22,7 @@ recipe1 = Recipe.create!(
 
 recipe2 = Recipe.create!(
   name: 'Paella',
+  image: "https://images.ctfassets.net/3s5io6mnxfqz/34NyUGqALQMx49gcHBWzIa/4678333ae7f54314afbd6c3f3b5e8e69/image1.jpg",
   ingredients: 'Rice, saffron, chicken, seafood, vegetables',
   instructions: 'Sauté chicken, add rice and broth, add seafood and veggies',
   cuisine: spanish,

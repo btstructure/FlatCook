@@ -6,7 +6,7 @@ class Api::V1::CuisinesController < ApplicationController
 
   def show
     @cuisine = Cuisine.find(params[:id])
-    @dishes = @cuisine.recipes 
-    render json: { cuisine: @cuisine, dishes: @dishes }
+    @recipes = @cuisine.recipes 
+    render json: { cuisine: @cuisine, recipes: @recipes }
   end
 end

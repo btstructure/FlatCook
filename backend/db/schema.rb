@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_05_213706) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_07_230108) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "recipe_id", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_05_213706) do
     t.integer "cuisine_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end

@@ -6,6 +6,7 @@ import SignUpForm from "./components/SignUpForm";
 import MainPage from "./components/MainPage"
 import App from "./App";
 import './index.css';
+import CuisineDishes from "./components/CuisineRecipes";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path : "/mainpage",
     element: <MainPage />
+  },
+  {
+    path: "/cuisine/:id",
+    element: <CuisineDishes />
   }
 ]);
 
