@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Cuisines() {
   const [cuisines, setCuisines] = useState([]);
@@ -12,7 +12,7 @@ function Cuisines() {
       .then((data) => {
         setCuisines(data);
       })
-      .catch((error) => console.error('Error fetching cuisines:', error));
+      .catch((error) => console.error("Error fetching cuisines:", error));
   }, []);
 
   return (
