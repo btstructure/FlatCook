@@ -1,12 +1,13 @@
 import React from "react";
-import NavBar from "./NavBar";
+import Layout from "./Layout";
 import Cuisines from "./Cusines";
 
 export default function MainPage() {
   return (
     <div>
-      <NavBar />
-      <Cuisines />
+      <Layout>
+        <Cuisines />
+      </Layout>
     </div>
   );
 }

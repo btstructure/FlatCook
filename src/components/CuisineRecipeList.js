@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function CuisineRecipes() {
+export default function CuisineRecipeList() {
   const [recipes, setRecipes] = useState([]);
   const { id } = useParams();
   const backendBaseUrl = "http://localhost:3001";
@@ -12,13 +12,13 @@ function CuisineRecipes() {
       .then((data) => {
         setRecipes(data.recipes);
       })
-      .catch((error) => console.error('Error fetching recipes:', error));
+      .catch((error) => console.error("Error fetching recipes:", error));
   }, [id]);
 
   return (
     <div className="mt-20 grid grid-cols-3 gap-4 justify-center">
       {recipes.map((recipe) => (
-          <div className="rounded-lg overflow-hidden shadow-md bg-white w-64 cursor-pointer">
+        <div className="rounded-lg overflow-hidden shadow-md bg-white w-64 cursor-pointer">
           <img
             src={recipe.image}
             alt={recipe.name}
@@ -32,6 +32,3 @@ function CuisineRecipes() {
     </div>
   );
 }
-
-export default CuisineRecipes;
-

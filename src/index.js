@@ -1,12 +1,13 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
-import MainPage from "./components/MainPage"
+import MainPage from "./components/MainPage";
 import App from "./App";
-import './index.css';
-import CuisineDishes from "./components/CuisineRecipes";
+import "./index.css";
+import CuisineRecipeList from "./components/CuisineRecipeList";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,13 +18,13 @@ const router = createBrowserRouter([
     element: <SignUpForm />,
   },
   {
-    path : "/mainpage",
-    element: <MainPage />
+    path: "/mainpage",
+    element: <MainPage />,
   },
   {
     path: "/cuisine/:id",
-    element: <CuisineDishes />
-  }
+    element: <CuisineRecipeList />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

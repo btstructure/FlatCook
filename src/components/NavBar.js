@@ -28,15 +28,20 @@ const NavBar = () => {
       });
   };
 
+  const handleFlatcookClick = (e) => {
+    e.preventDefault(); 
+  };
+
   return (
     <div>
       <nav className="bg-white rounded-t-md shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div>
-              <Link
+            <Link
                 to="/"
                 className="text-black text-xl font-semibold hover:opacity-80"
+                onClick={handleFlatcookClick} 
               >
                 Flatcook
               </Link>
