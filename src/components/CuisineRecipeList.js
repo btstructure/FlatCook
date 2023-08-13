@@ -18,7 +18,7 @@ export default function CuisineRecipeList() {
 
   return (
     <Layout>
-      <div className="mt-20 grid grid-cols-3 gap-4 justify-center">
+      <div className="mt-20 flex flex-wrap gap-4 justify-center">
         {recipes.map((recipe) => (
           <div className="rounded-lg overflow-hidden shadow-md bg-white w-64 cursor-pointer">
             <img
