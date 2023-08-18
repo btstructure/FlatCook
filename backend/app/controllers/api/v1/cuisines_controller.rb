@@ -9,4 +9,9 @@ class Api::V1::CuisinesController < ApplicationController
     @recipes = @cuisine.recipes 
     render json: { cuisine: @cuisine, recipes: @recipes }
   end
+
+  def show_recipe
+    @recipe = Recipe.find(params[:id])
+    render json: @recipe
+  end
 end

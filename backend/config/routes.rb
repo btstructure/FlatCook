@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       
       get 'cuisines', to: 'cuisines#index'
       get 'cuisines/:id', to: 'cuisines#show'
+
+      get 'recipes/:id', to: 'recipes#show'
     end
   end
 end

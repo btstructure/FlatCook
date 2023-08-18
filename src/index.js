@@ -9,6 +9,7 @@ import App from "./App";
 import "./index.css";
 import CuisineRecipeList from "./components/CuisineRecipeList";
 import MyProfile from "./components/MyProfile";
+import RecipeDetail from "./components/RecipeDetail";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +30,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/favorites",
-    element: <Favorites />
+    element: <Favorites />,
   },
   {
     path: "/myprofile",
-    element: <MyProfile />
-  }
+    element: <MyProfile />,
+  },
+  {
+    path: "/recipe/:id",
+    element: <RecipeDetail />,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
