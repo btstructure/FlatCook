@@ -5,6 +5,8 @@ const SignUpForm = () => {
     username: "",
     password: "",
     confirmPassword: "",
+    first_name: "",
+    last_name: "",
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -37,6 +39,8 @@ const SignUpForm = () => {
           username: "",
           password: "",
           confirmPassword: "",
+          first_name: "",
+          last_name: "",
         });
       })
       .catch((error) => {
@@ -63,6 +67,36 @@ const SignUpForm = () => {
         <div className="w-1/3 bg-white bg-opacity-75 rounded-lg p-8 shadow-md">
           <h2 className="text-3xl font-semibold mb-4">Sign Up</h2>
           <form onSubmit={handleSignUp}>
+            <div className="mb-4">
+              <label htmlFor="first_name" className="block font-semibold">
+                First Name
+              </label>
+              <input
+                type="text"
+                id="first_name"
+                value={formData.first_name}
+                onChange={handleChange}
+                name="first_name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                placeholder="Enter your first name"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="last_name" className="block font-semibold">
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="last_name"
+                value={formData.last_name}
+                onChange={handleChange}
+                name="last_name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                placeholder="Enter your last name"
+                required
+              />
+            </div>
             <div className="mb-4">
               <label htmlFor="username" className="block font-semibold">
                 Username
@@ -97,7 +131,7 @@ const SignUpForm = () => {
               <label htmlFor="confirmPassword" className="block font-semibold">
                 Confirm Password
               </label>
-              <input
+               <input
                 type="password"
                 id="confirmPassword"
                 value={formData.confirmPassword}

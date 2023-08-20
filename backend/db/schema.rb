@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_07_230108) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_20_134704) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "recipe_id", null: false
@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_07_230108) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
   end
 
   add_foreign_key "comments", "recipes"

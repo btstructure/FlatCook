@@ -1,8 +1,86 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 
 function MyProfile() {
-  return <Layout></Layout>;
+  const [userData, setUser] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+  });
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/v1/user", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data.user);
+      })
+      .catch((error) => console.error("Error fetching user:", error));
+  }, []);
+
+  return (
+    <Layout>
+      <div className="mt-10 max-w-6xl mx-auto">
+        <div className="flex">
+          <div className="bg-gray-100 rounded-l p-4 shadow-md">
+            <div className="mb-4 space-y-2">
+              <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
+                User Information
+              </div>
+              <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
+                Recipes Made
+              </div>
+              <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
+                Comments
+              </div>
+            </div>
+          </div>
+          <div className="flex-grow bg-white rounded-r p-4 ml-4  shadow-md">
+            <div className="mb-4">
+              <h2 className="text-xl font-semibold mb-2">Information</h2>
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-gray-700">
+                  First Name: {userData.first_name}
+                </p>
+                <p className="text-sm font-medium text-gray-700">
+                  Last Name: {userData.last_name}
+                </p>
+                <p className="text-sm font-medium text-gray-700">
+                  Username: {userData.username}
+                </p>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold mb-2">Change Password</h2>
+              <div className="mb-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  New Password:
+                </label>
+                <input
+                  type="password"
+                  className="w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
+                />
+              </div>
+              <div className="mb-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Confirm New Password:
+                </label>
+                <input
+                  type="password"
+                  className="w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:outline-none"
+                />
+              </div>
+              <button className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600">
+                Change Password
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
 }
 
 export default MyProfile;

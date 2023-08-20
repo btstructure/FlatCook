@@ -8,8 +8,8 @@ italian = Cuisine.create!(name: 'Italian', image_url: "https://www.tastingtable.
 spanish = Cuisine.create!(name: 'Spanish', image_url: "https://www.expatica.com/app/uploads/sites/2/2014/05/spanish-cuisine.jpg")
 indian = Cuisine.create!(name: 'Indian', image_url: "https://hips.hearstapps.com/hmg-prod/images/chicken-tikka-masala1-1663341991.jpg?crop=0.891xw:0.656xh;0.0433xw,0.321xh&resize=1200:*")
 
-user1 = User.create!(username: 'John', password: 'password')
-user2 = User.create!(username: 'Jane', password: 'password')
+user1 = User.create!(username: 'John', password: 'password', first_name: "John", last_name: "Wick")
+user2 = User.create!(username: 'Jane', password: 'password', first_name: "Jane", last_name: "Maine")
 
 recipe1 = Recipe.create!(
   name: 'Pasta Carbonara',
