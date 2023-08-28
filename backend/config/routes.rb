@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       get 'cuisines/:id', to: 'cuisines#show'
 
       get 'recipes/:id', to: 'recipes#show'
+
+      post 'recipes/:recipe_id/comments', to: 'comments#create'
+
     end
   end
 end

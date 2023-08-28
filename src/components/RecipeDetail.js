@@ -4,6 +4,7 @@ import Layout from "./Layout";
 
 export default function RecipeDetail() {
   const [recipe, setRecipe] = useState(null);
+  const [newComment, setNewComment] = useState("");
   const { id } = useParams();
   const backendBaseUrl = "http://localhost:3001";
 
@@ -19,6 +20,13 @@ export default function RecipeDetail() {
   if (!recipe) {
     return <div>Loading...</div>;
   }
+
+  const handleCommentChange = (event) => {
+    setNewComment(event.target.value);
+  };
+
+  const handleCommentSubmit = () => {
+  };
 
   return (
     <Layout>
@@ -50,6 +58,32 @@ export default function RecipeDetail() {
                 ))}
               </ul>
             </div>
+          </div>
+        </div>
+        <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+          <h3 className="text-xl font-medium mb-2">Comments:</h3>
+          <ul className="space-y-4">
+            {recipe.comments.map((comment, index) => (
+              <li key={index} className="bg-gray-100 p-2 rounded-md">
+                <p className="font-semibold">{comment.user.username}</p>
+                <p>{comment.content}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4">
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={handleCommentChange}
+              className="w-full p-2 border rounded-md"
+            />
+            <button
+              onClick={handleCommentSubmit}
+              className="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md hover:bg-blue-600"
+            >
+              Post Comment
+            </button>
           </div>
         </div>
       </div>
