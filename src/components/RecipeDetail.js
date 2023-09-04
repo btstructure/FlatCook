@@ -26,6 +26,26 @@ export default function RecipeDetail() {
   };
 
   const handleCommentSubmit = () => {
+    const newCommentData = {
+      content: newComment,
+    };
+
+    fetch(`${backendBaseUrl}/api/v1/recipes/${id}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCommentData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setRecipe((prevRecipe) => ({
+          ...prevRecipe,
+          comments: [...prevRecipe.comments, data],
+        }));
+        setNewComment("");
+      })
+      .catch((error) => console.error("Error craeting comment: ", error));
   };
 
   return (

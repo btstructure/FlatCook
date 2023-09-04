@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Backend
   class Application < Rails::Application
+    config.middleware.use ActionDispatch::Session::CookieStore, key: 'current_user_session'
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.hosts << "localhost:3000"
