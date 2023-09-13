@@ -61,6 +61,9 @@ Rails.application.configure do
 
   config.session_store :cookie_store, key: 'current_user_session'
 
+  config.action_controller.asset_host = 'http://localhost:3000' 
+
+
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

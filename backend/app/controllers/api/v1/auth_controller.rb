@@ -12,10 +12,7 @@ class Api::V1::AuthController < ApplicationController
     end
 
   
-    def logout
-      session.delete(:user_id)
-      render json: { message: 'Logged out successfully' }, status: :ok
-    end
+   
   
     private
   

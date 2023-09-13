@@ -10,6 +10,7 @@ import "./index.css";
 import CuisineRecipeList from "./components/CuisineRecipeList";
 import MyProfile from "./components/MyProfile";
 import RecipeDetail from "./components/RecipeDetail";
+import { UserProvider } from "./components/UseContext";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <div>
-    <RouterProvider router={router} />
-    <App />
+    <UserProvider>
+      <RouterProvider router={router} />
+      <App />
+    </UserProvider>
   </div>
 );

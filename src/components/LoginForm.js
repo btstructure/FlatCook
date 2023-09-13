@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "./UseContext";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const { login } = useContext(UserContext);
 
   const backendBaseUrl = "http://localhost:3001";
 
@@ -36,9 +37,8 @@ const LoginForm = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Login successful:", data);
         const { username, id } = data.user;
-        setUser({ username, id });
+        login({ username, id });
         navigate("/mainpage");
       })
       .catch((error) => {
@@ -89,7 +89,7 @@ const LoginForm = () => {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account? {" "}
+          Don't have an account?{" "}
           <Link
             to="/signup"
             className="text-blue-500 font-semibold hover:text-blue-600"

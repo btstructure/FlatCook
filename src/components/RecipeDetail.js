@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
+import { UserContext } from "./UseContext"; 
 
 export default function RecipeDetail() {
   const [recipe, setRecipe] = useState(null);
   const [newComment, setNewComment] = useState("");
   const { id } = useParams();
   const backendBaseUrl = "http://localhost:3001";
+  const { user } = useContext(UserContext); 
 
   useEffect(() => {
     fetch(`${backendBaseUrl}/api/v1/recipes/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setRecipe(data);
+        console.log(id);
       })
       .catch((error) => console.error("Error fetching recipe:", error));
   }, [id]);
@@ -28,6 +31,7 @@ export default function RecipeDetail() {
   const handleCommentSubmit = () => {
     const newCommentData = {
       content: newComment,
+      user_id: id, 
     };
 
     fetch(`${backendBaseUrl}/api/v1/recipes/${id}/comments`, {
@@ -44,8 +48,9 @@ export default function RecipeDetail() {
           comments: [...prevRecipe.comments, data],
         }));
         setNewComment("");
+        console.log(data);
       })
-      .catch((error) => console.error("Error craeting comment: ", error));
+      .catch((error) => console.error("Error creating comment: ", error));
   };
 
   return (
@@ -85,7 +90,7 @@ export default function RecipeDetail() {
           <ul className="space-y-4">
             {recipe.comments.map((comment, index) => (
               <li key={index} className="bg-gray-100 p-2 rounded-md">
-                <p className="font-semibold">{comment.user.username}</p>
+                <p className="font-semibold">{comment.user?.username}</p>
                 <p>{comment.content}</p>
               </li>
             ))}
