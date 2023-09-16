@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Layout from "./Layout";
+import { UserContext } from "./UseContext";
 
 function MyProfile() {
-  const [userData, setUser] = useState({
-    first_name: "",
-    last_name: "",
-    username: "",
-  });
 
-  useEffect(() => {
-    fetch("http://localhost:3001/api/v1/user", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setUser(data.user);
-      })
-      .catch((error) => console.error("Error fetching user:", error));
-  }, []);
+
+  const { user } = useContext(UserContext);
+
+
 
   return (
     <Layout>
@@ -30,10 +19,10 @@ function MyProfile() {
                 User Information
               </div>
               <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
-                Recipes Made
+                My Recipes
               </div>
               <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
-                Comments
+                Create Recipe
               </div>
             </div>
           </div>
@@ -42,13 +31,13 @@ function MyProfile() {
               <h2 className="text-xl font-semibold mb-2">Information</h2>
               <div className="space-y-1">
                 <p className="text-sm font-medium text-gray-700">
-                  First Name: {userData.first_name}
+                  First Name: {user.first_name}
                 </p>
                 <p className="text-sm font-medium text-gray-700">
-                  Last Name: {userData.last_name}
+                  Last Name: {user.last_name}
                 </p>
                 <p className="text-sm font-medium text-gray-700">
-                  Username: {userData.username}
+                  Username: {user.username}
                 </p>
               </div>
             </div>

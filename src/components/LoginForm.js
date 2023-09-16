@@ -37,8 +37,9 @@ const LoginForm = () => {
         return response.json();
       })
       .then((data) => {
-        const { username, id } = data.user;
-        login({ username, id });
+        console.log(data)
+        const { username, id, first_name, last_name } = data.user;
+        login({ username, id, first_name, last_name  });
         navigate("/mainpage");
       })
       .catch((error) => {
