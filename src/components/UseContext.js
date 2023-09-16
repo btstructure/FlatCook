@@ -7,7 +7,6 @@ function UserProvider({ children }) {
 
   const login = (userData) => {
     setUser(userData);
-    console.log(user)
   };
 
   const logout = () => {

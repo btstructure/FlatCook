@@ -6,7 +6,8 @@ class Api::V1::CommentsController < ApplicationController
         comment = recipe.comments.new(comment_params)
 
         if comment.save 
-            render json: comment, status: :created 
+            user = User.find(comment.user_id)
+            render json: {comment: comment, username: user.username}, status: :created 
         else
             render json: {errors: comment.errors.full_messages}, status: :unprocessable_entity
         end

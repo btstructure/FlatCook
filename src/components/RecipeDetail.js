@@ -1,21 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
-import { UserContext } from "./UseContext"; 
+import { UserContext } from "./UseContext";
 
 export default function RecipeDetail() {
   const [recipe, setRecipe] = useState(null);
   const [newComment, setNewComment] = useState("");
   const { id } = useParams();
   const backendBaseUrl = "http://localhost:3001";
-  const { user } = useContext(UserContext); 
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     fetch(`${backendBaseUrl}/api/v1/recipes/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setRecipe(data);
-        console.log(id);
+        console.log(data)
+        console.log(user)
       })
       .catch((error) => console.error("Error fetching recipe:", error));
   }, [id]);
@@ -30,8 +31,9 @@ export default function RecipeDetail() {
 
   const handleCommentSubmit = () => {
     const newCommentData = {
+      user_id: user.id,
       content: newComment,
-      user_id: id, 
+      username: user.username
     };
 
     fetch(`${backendBaseUrl}/api/v1/recipes/${id}/comments`, {
@@ -45,7 +47,7 @@ export default function RecipeDetail() {
       .then((data) => {
         setRecipe((prevRecipe) => ({
           ...prevRecipe,
-          comments: [...prevRecipe.comments, data],
+          comments: [...prevRecipe.comments, data.comment],
         }));
         setNewComment("");
         console.log(data);
@@ -85,7 +87,7 @@ export default function RecipeDetail() {
             </div>
           </div>
         </div>
-        <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+        <div className="mt-6 mb-8  p-4 bg-white rounded-lg shadow-md">
           <h3 className="text-xl font-medium mb-2">Comments:</h3>
           <ul className="space-y-4">
             {recipe.comments.map((comment, index) => (
@@ -102,6 +104,7 @@ export default function RecipeDetail() {
               value={newComment}
               onChange={handleCommentChange}
               className="w-full p-2 border rounded-md"
+              required
             />
             <button
               onClick={handleCommentSubmit}

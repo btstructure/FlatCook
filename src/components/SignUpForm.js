@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +10,7 @@ const SignUpForm = () => {
     first_name: "",
     last_name: "",
   });
+
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -131,7 +134,7 @@ const SignUpForm = () => {
               <label htmlFor="confirmPassword" className="block font-semibold">
                 Confirm Password
               </label>
-               <input
+              <input
                 type="password"
                 id="confirmPassword"
                 value={formData.confirmPassword}
@@ -149,6 +152,15 @@ const SignUpForm = () => {
               Sign Up
             </button>
           </form>
+          <p className="mt-4 text-center">
+            Have an account?{" "}
+            <Link
+              to="/"
+              className="text-blue-500 font-semibold hover:text-blue-600"
+            >
+              Login
+            </Link>
+          </p>
         </div>
       )}
     </div>
