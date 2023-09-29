@@ -1,10 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "./UseContext";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { login } = useContext(UserContext);
 
   const backendBaseUrl = "http://localhost:3001";
 
@@ -37,9 +35,6 @@ const LoginForm = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data)
-        const { username, id, first_name, last_name } = data.user;
-        login({ username, id, first_name, last_name  });
         navigate("/mainpage");
       })
       .catch((error) => {

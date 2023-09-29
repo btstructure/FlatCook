@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import Layout from "./Layout";
 import { UserContext } from "./UseContext";
+import { Link } from "react-router-dom";
+
+
+
 
 function MyProfile() {
-
-
   const { user } = useContext(UserContext);
-
-
 
   return (
     <Layout>
@@ -16,13 +16,17 @@ function MyProfile() {
           <div className="bg-gray-100 rounded-l p-4 shadow-md">
             <div className="mb-4 space-y-2">
               <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
-                User Information
+                <Link>User Information</Link>
               </div>
               <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
-                My Recipes
+                <Link to="/myrecipes" className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
+                  My Recipes
+                </Link>
               </div>
               <div className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
-                Create Recipe
+                <Link className="p-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300">
+                  Create Recipe
+                </Link>
               </div>
             </div>
           </div>

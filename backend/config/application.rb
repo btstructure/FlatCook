@@ -8,17 +8,21 @@ Bundler.require(*Rails.groups)
 
 module Backend
   class Application < Rails::Application
-    config.middleware.use ActionDispatch::Session::CookieStore, key: 'current_user_session'
-
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.hosts << "localhost:3000"
+    
+    # Insert the Rack::Cors middleware correctly
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://localhost:3000' 
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
       end
     end
+
+    # ...
+  end
+end
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -27,5 +31,3 @@ module Backend
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-  end
-end

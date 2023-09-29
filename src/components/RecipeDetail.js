@@ -19,7 +19,7 @@ export default function RecipeDetail() {
         console.log(user)
       })
       .catch((error) => console.error("Error fetching recipe:", error));
-  }, [id]);
+  }, []);
 
   if (!recipe) {
     return <div>Loading...</div>;
@@ -33,7 +33,7 @@ export default function RecipeDetail() {
     const newCommentData = {
       user_id: user.id,
       content: newComment,
-      username: user.username
+      // username: user.username
     };
 
     fetch(`${backendBaseUrl}/api/v1/recipes/${id}/comments`, {

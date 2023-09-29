@@ -4,9 +4,14 @@ Recipe.destroy_all
 Like.destroy_all
 Comment.destroy_all
 
-italian = Cuisine.create!(name: 'Italian', image_url: "https://www.tastingtable.com/img/gallery/20-italian-dishes-you-need-to-try-at-least-once/l-intro-1643403830.jpg")
-spanish = Cuisine.create!(name: 'Spanish', image_url: "https://www.expatica.com/app/uploads/sites/2/2014/05/spanish-cuisine.jpg")
-indian = Cuisine.create!(name: 'Indian', image_url: "https://hips.hearstapps.com/hmg-prod/images/chicken-tikka-masala1-1663341991.jpg?crop=0.891xw:0.656xh;0.0433xw,0.321xh&resize=1200:*")
+italian = Cuisine.create!(name: 'Italian', image_url: File.open(Rails.root.join('public', 'images', "italianfood.jpg")))
+spanish = Cuisine.create!(name: 'Spanish', image_url: File.open(Rails.root.join('public', 'images', "spanishfood.jpg")))
+indian = Cuisine.create!(name: 'Indian', image_url: File.open(Rails.root.join('public', 'images', "indianfood.jpg" )))
+turkish = Cuisine.create!(name: 'Turkish', image_url: File.open(Rails.root.join('public', 'images', "turkishfood.jpg")))
+chinese = Cuisine.create!(name: "Chinese", image_url: File.open(Rails.root.join('public', 'images', "chinesefood.jpg")))
+japanese = Cuisine.create!(name: "Japanese", image_url: File.open(Rails.root.join('public', 'images', "japanesefood.jpg")))
+soul_food = Cuisine.create!(name: "Soul Food", image_url: File.open(Rails.root.join('public', 'images', "soulfood.jpg")))
+korean = Cuisine.create!(name: "Korean", image_url: File.open(Rails.root.join('public', 'images', "koreanfood.jpg")))
 
 user1 = User.create!(username: 'John', password: 'password', first_name: "John", last_name: "Wick")
 user2 = User.create!(username: 'Jane', password: 'password', first_name: "Jane", last_name: "Maine")

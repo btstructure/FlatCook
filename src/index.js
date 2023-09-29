@@ -10,7 +10,9 @@ import "./index.css";
 import CuisineRecipeList from "./components/CuisineRecipeList";
 import MyProfile from "./components/MyProfile";
 import RecipeDetail from "./components/RecipeDetail";
+import MyRecipes from "./components/MyRecipes";
 import { UserProvider } from "./components/UseContext";
+import CreateRecipe from "./components/CreateRecipe";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
   {
     path: "/recipe/:id",
     element: <RecipeDetail />,
+  },
+  {
+    path: "/myrecipes",
+    element: <MyRecipes />,
+  },
+  {
+    path: "/createrecipes",
+    element: <CreateRecipe />,
   },
 ]);
 
