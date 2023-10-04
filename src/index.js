@@ -11,7 +11,7 @@ import CuisineRecipeList from "./components/CuisineRecipeList";
 import MyProfile from "./components/MyProfile";
 import RecipeDetail from "./components/RecipeDetail";
 import MyRecipes from "./components/MyRecipes";
-import { UserProvider } from "./components/UseContext";
+import { UserProvider } from "./components/UserContext";
 import CreateRecipe from "./components/CreateRecipe";
 
 const router = createBrowserRouter([

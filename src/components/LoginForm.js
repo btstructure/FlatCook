@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "./UserContext"; 
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { login } = useContext(UserContext); 
 
   const backendBaseUrl = "http://localhost:3001";
 
@@ -35,6 +37,7 @@ const LoginForm = () => {
         return response.json();
       })
       .then((data) => {
+        login(data.user); // Call the login function from the context to set the user data
         navigate("/mainpage");
       })
       .catch((error) => {

@@ -1,25 +1,24 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from "./UserContext";
 import Layout from "./Layout";
-import { UserContext } from "./UseContext";
 
 export default function RecipeDetail() {
   const [recipe, setRecipe] = useState(null);
   const [newComment, setNewComment] = useState("");
   const { id } = useParams();
   const backendBaseUrl = "http://localhost:3001";
-  const { user } = useContext(UserContext);
+
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     fetch(`${backendBaseUrl}/api/v1/recipes/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setRecipe(data);
-        console.log(data)
-        console.log(user)
       })
       .catch((error) => console.error("Error fetching recipe:", error));
-  }, []);
+  }, [id]);
 
   if (!recipe) {
     return <div>Loading...</div>;
@@ -31,9 +30,7 @@ export default function RecipeDetail() {
 
   const handleCommentSubmit = () => {
     const newCommentData = {
-      user_id: user.id,
       content: newComment,
-      // username: user.username
     };
 
     fetch(`${backendBaseUrl}/api/v1/recipes/${id}/comments`, {
@@ -50,7 +47,6 @@ export default function RecipeDetail() {
           comments: [...prevRecipe.comments, data.comment],
         }));
         setNewComment("");
-        console.log(data);
       })
       .catch((error) => console.error("Error creating comment: ", error));
   };
@@ -87,7 +83,7 @@ export default function RecipeDetail() {
             </div>
           </div>
         </div>
-        <div className="mt-6 mb-8  p-4 bg-white rounded-lg shadow-md">
+        <div className="mt-6 mb-8 p-4 bg-white rounded-lg shadow-md">
           <h3 className="text-xl font-medium mb-2">Comments:</h3>
           <ul className="space-y-4">
             {recipe.comments.map((comment, index) => (
@@ -98,20 +94,26 @@ export default function RecipeDetail() {
             ))}
           </ul>
           <div className="mt-4">
-            <input
-              type="text"
-              placeholder="Add a comment..."
-              value={newComment}
-              onChange={handleCommentChange}
-              className="w-full p-2 border rounded-md"
-              required
-            />
-            <button
-              onClick={handleCommentSubmit}
-              className="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md hover:bg-blue-600"
-            >
-              Post Comment
-            </button>
+            {userContext.user ? (
+              <>
+                <input
+                  type="text"
+                  placeholder="Add a comment..."
+                  value={newComment}
+                  onChange={handleCommentChange}
+                  className="w-full p-2 border rounded-md"
+                  required
+                />
+                <button
+                  onClick={handleCommentSubmit}
+                  className="mt-2 bg-blue-500 text-white py-1 px-4 rounded-md hover:bg-blue-600"
+                >
+                  Post Comment
+                </button>
+              </>
+            ) : (
+              <p>Please log in to leave a comment.</p>
+            )}
           </div>
         </div>
       </div>

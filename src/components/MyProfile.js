@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Layout from "./Layout";
-import { UserContext } from "./UseContext";
+import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 
 

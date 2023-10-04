@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+    before_action :require_login, only: [:show, :update_password]
 
     def create
       user = User.create(user_params)
@@ -10,8 +11,8 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def show
-        current_user = User.find(session[:user_id])
-        render json: user, status: :ok
+        @current_user = User.find(session[:user_id])
+        render json: @current_user, status: :ok
     end
 
     def update_password 
@@ -31,6 +32,12 @@ class Api::V1::UsersController < ApplicationController
 
     def user_password_params 
         params.require(:user).permit(:password, :password_confirmation)
+    end
+
+    def require_login
+        unless session[:user_id]
+          render json: { error: 'You must be logged in to access this resource' }, status: :unauthorized
+        end
     end
    
 end
